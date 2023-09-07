@@ -2,6 +2,9 @@
   <div class="row mt-5">
     <div class="col-md-4">
       <h3>予定作成</h3>
+      <% if @blog.errors.any? %>
+        <p style="color:red;">※全て入力してください</p>
+      <% end %>
       <%= form_with(model: @blog, local: true) do |f| %>
         <div class="title mt-4">
           <div class="form-tag">タイトル</div>

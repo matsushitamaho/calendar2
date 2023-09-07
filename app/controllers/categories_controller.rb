@@ -13,7 +13,7 @@ class CategoriesController < ApplicationController
       redirect_to categories_path
     else
       @categories = Category.all
-      render 'index'
+      render 'index', status: :unprocessable_entity
     end
   end
 
@@ -25,7 +25,7 @@ class CategoriesController < ApplicationController
       flash[:success] = "更新しました！"
       redirect_to categories_path
     else
-      render 'edit'
+      render 'edit', status: :unprocessable_entity
     end
   end
   

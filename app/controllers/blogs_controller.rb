@@ -19,9 +19,13 @@ class BlogsController < ApplicationController
       flash[:success] = "追加しました！"
       redirect_to blogs_path
     else
+      @blogs = Blog.all
+      @categories = Category.all
       render 'index', status: :unprocessable_entity
     end
   end
+
+
   
   def destroy
     @blog = Blog.find(params[:id])
@@ -41,6 +45,7 @@ class BlogsController < ApplicationController
       flash[:success] = "更新しました！"
       redirect_to blog_path
     else
+      @categories = Category.all
       render 'edit', status: :unprocessable_entity
     end
   end

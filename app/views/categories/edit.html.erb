@@ -2,10 +2,14 @@
   <div class="row mt-5">
     <div class="col-md-4 mt-5">
       <h3 class="mb-5">カテゴリ編集</h3>
+      <% if @category.errors.any? %>
+        <p style="color:red;">※入力してください</p>
+      <% end %>
       <%= form_with(model: @category, local: true) do |f| %>
-        <%= f.label :name, "カテゴリ名" %>
+      <div class="field_with_errors">
         <%= f.text_field :name %>
         <%= f.submit "更新", class: "btn btn-outline-success" %>
+      </div>
       <% end %>
     </div>
   </div>
