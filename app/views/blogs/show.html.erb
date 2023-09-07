@@ -1,0 +1,42 @@
+<div class="m-5 p-5">
+  <h1>
+    <%= @blog.start_time.strftime("%m月%d日") %>
+  </h1>
+  
+  <% if flash[:success] %>
+    <div class="alert alert-success" style="width:250px;">
+      <%= flash[:success] %>
+    </div>
+  <% end %>
+  
+  <table class="table my-5" style="width:800px;">
+    <tbody>
+      <tr>
+        <th style="width:200px; background-color: #E7DED7;">時間</th>
+        <td style="width:600px;"><%= @blog.start_time.strftime("%H:%M") %></td>
+      </tr>
+      <tr>
+        <th style="background-color: #E7DED7;">タイトル</th>
+        <td><%= @blog.title %></td>
+      </tr>
+      <tr>
+        <th style="background-color: #E7DED7;">内容</th>
+        <td><%= @blog.content %></td>
+      </tr>
+      <tr>
+        <th style="background-color: #E7DED7;">カテゴリ</th>
+        <td>
+          <% if @blog.category_id.present? %>
+            <%= Category.find(@blog.category_id).name %>
+          <% else %>
+            カテゴリが設定されていません
+          <% end %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <%= link_to "編集", edit_blog_path(@blog), class: "btn btn-outline-primary" %>
+  <%= link_to "消去", blog_path(@blog.id), data: { turbo_method: :delete }, class: "btn btn-outline-danger mx-3" %>
+  <%= link_to "戻る", blogs_path, class: "btn btn-outline-dark" %>
+</div>

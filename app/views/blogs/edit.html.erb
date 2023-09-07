@@ -1,0 +1,30 @@
+<div class="m-5 p-5">
+  <h3>予定編集</h3>
+  <%= form_with(model: @blog, local: true) do |f| %>
+
+  <div class="title mt-3">
+    <div class="form-tag">タイトル</div>
+    <%= f.text_field :title %>
+  </div>
+
+  <div class="content mt-3">
+    <div class="form-tag">内容</div>
+    <%= f.text_area :content, size: "30x5" %>
+  </div>
+
+  <div class="time mt-3">
+    <div class="form-tag">時間</div>
+    <%= f.datetime_select :start_time %>
+  </div>
+
+  <div class="category mt-3">
+    <div class="form-tag">カテゴリ</div>
+    <%= f.collection_select :category_id, @categories, :id, :name, { prompt: '選択してください' } %>
+  </div>
+
+  <div class="submit mt-3">
+    <%= f.submit "更新", class: "btn btn-outline-success" %>
+  </div>
+
+<% end %>
+</div>

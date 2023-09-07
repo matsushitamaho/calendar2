@@ -1,0 +1,49 @@
+<div class="container pt-5">
+  <div class="row mt-5">
+    <div class="col-md-4 mt-5">
+      <h3 class="mb-5">カテゴリ追加</h3>
+      <%= form_with(model: @category, url: categories_path) do |f| %>
+        <%= f.label :name, "カテゴリ名" %>
+        <%= f.text_field :name %>
+        <%= f.submit "追加", class: "btn btn-outline-success"%>
+      <% end %>
+      
+      <% if flash[:success] %>
+        <div class="alert alert-success" style="width:250px;">
+          <%= flash[:success] %>
+        </div>
+      <% end %>
+    
+    </div>
+    
+    <div class="col-md-1"></div>
+    <div class="col-md-7">
+      <table class="table" style="width:700px;">
+        <thead>
+          <tr>
+            <th>
+              カテゴリ一覧
+            </th>
+            <th style="width:100px;"></th>
+            <th style="width:100px;"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @categories.each do |category| %>
+            <tr>
+              <td>
+                <%= category.name %>
+              </td>
+              <td>
+                <%= link_to "編集", edit_category_path(category), class: "btn btn-outline-primary" %>
+              </td>
+              <td>
+                <%= link_to "削除", category_path(category), data: { turbo_method: :delete }, class: "btn btn-outline-danger"  %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
