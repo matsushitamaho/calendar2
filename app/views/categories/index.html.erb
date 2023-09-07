@@ -42,7 +42,7 @@
                 <%= link_to "編集", edit_category_path(category), class: "btn btn-outline-primary" %>
               </td>
               <td>
-                <%= link_to "削除", category_path(category), data: { turbo_method: :delete }, class: "btn btn-outline-danger"  %>
+                <%= link_to "削除", category_path(category), data: { turbo_method: :delete, turbo_confirm: "削除しますか？" }, class: "btn btn-outline-danger"  %>
               </td>
             </tr>
           <% end %>
