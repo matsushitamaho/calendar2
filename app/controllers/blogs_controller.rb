@@ -25,8 +25,6 @@ class BlogsController < ApplicationController
     end
   end
 
-
-  
   def destroy
     @blog = Blog.find(params[:id])
     @blog.destroy
@@ -47,6 +45,15 @@ class BlogsController < ApplicationController
     else
       @categories = Category.all
       render 'edit', status: :unprocessable_entity
+    end
+  end
+  
+  def search
+    @keyword = params[:keyword]
+    if @keyword.present?
+      @blogs = Blog.where("title LIKE :keyword OR content LIKE :keyword", keyword: "%#{@keyword}%").order(start_time: :asc)
+    else
+      @blogs = []
     end
   end
   

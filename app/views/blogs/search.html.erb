@@ -1,0 +1,27 @@
+<div class="m-5 p-5">
+  <h1>検索結果</h1>
+  <% if @blogs.any? %>
+    <% @blogs.each do |blog| %>
+      <%= link_to blog_path(blog) , class: "text-decoration-none" do %>
+        <div class="card my-4" style="width:600px; color: black;">
+          <div class="card-body d-flex justify-content">
+            <h4 class="card-title">
+              <%= blog.start_time.strftime("%m月%d日") %>
+            </h4>
+            <p class="card-text mx-5">
+              <i class="fa-regular fa-clock"></i>
+              <%= blog.start_time.strftime("%H:%M") %>
+            </p>
+            <p class="card-text">
+              <i class="fa-regular fa-clipboard"></i>
+              <%= blog.title %>
+            </p>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  <% else %>
+    <p class="my-4">該当するブログがありません。</p>
+  <% end %>
+</div>
+
