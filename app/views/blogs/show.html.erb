@@ -21,7 +21,7 @@
       </tr>
       <tr>
         <th style="background-color: #E7DED7;">内容</th>
-        <td><%= @blog.content %></td>
+        <td><%= @blog.content.gsub("\n", "<br>").html_safe %></td>
       </tr>
       <tr>
         <th style="background-color: #E7DED7;">カテゴリ</th>
